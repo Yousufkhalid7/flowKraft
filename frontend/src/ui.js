@@ -1,7 +1,8 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
+import { PromptNode } from './nodes/promptNode';
+import { NoteNode } from './nodes/noteNode';
+import { MathNode } from './nodes/mathNode';
+import { TimerNode } from './nodes/timerNode';
+import { FilterNode } from './nodes/filterNode';
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
@@ -20,6 +21,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  prompt: PromptNode,
+  note: NoteNode,
+  math: MathNode,
+  timer: TimerNode,
+  filter: FilterNode,
 };
 
 const selector = (state) => ({
