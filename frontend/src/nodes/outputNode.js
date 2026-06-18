@@ -1,47 +1,47 @@
-// outputNode.js
-
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Position } from 'reactflow';
+import { BaseNode } from './BaseNode';
 
 export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
+  const [currName, setCurrName] = useState(
+    data?.outputName || id.replace('customOutput-', 'output_')
+  );
   const [outputType, setOutputType] = useState(data.outputType || 'Text');
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
+  const handles = [
+    { type: 'target', position: Position.Left, id: `${id}-value` }
+  ];
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-      />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
-        </label>
-      </div>
-    </div>
+    <BaseNode title="Output" color="#f59e0b" handles={handles}>
+      <label style={{ display: 'block', marginBottom: 6 }}>
+        <span style={{ color: '#6b7280', fontSize: 11 }}>Name</span>
+        <input
+          type="text"
+          value={currName}
+          onChange={(e) => setCurrName(e.target.value)}
+          style={{
+            display: 'block', width: '100%', marginTop: 2,
+            padding: '3px 6px', border: '1px solid #d1d5db',
+            borderRadius: 4, fontSize: 12, boxSizing: 'border-box',
+          }}
+        />
+      </label>
+      <label style={{ display: 'block' }}>
+        <span style={{ color: '#6b7280', fontSize: 11 }}>Type</span>
+        <select
+          value={outputType}
+          onChange={(e) => setOutputType(e.target.value)}
+          style={{
+            display: 'block', width: '100%', marginTop: 2,
+            padding: '3px 6px', border: '1px solid #d1d5db',
+            borderRadius: 4, fontSize: 12, boxSizing: 'border-box',
+          }}
+        >
+          <option value="Text">Text</option>
+          <option value="Image">Image</option>
+        </select>
+      </label>
+    </BaseNode>
   );
-}
+};

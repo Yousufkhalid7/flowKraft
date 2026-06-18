@@ -1,35 +1,29 @@
-// textNode.js
-
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Position } from 'reactflow';
+import { BaseNode } from './BaseNode';
 
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
 
-  const handleTextChange = (e) => {
-    setCurrText(e.target.value);
-  };
+  const handles = [
+    { type: 'source', position: Position.Right, id: `${id}-output` },
+  ];
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Text</span>
-      </div>
-      <div>
-        <label>
-          Text:
-          <input 
-            type="text" 
-            value={currText} 
-            onChange={handleTextChange} 
-          />
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-output`}
-      />
-    </div>
+    <BaseNode title="Text" color="#3b82f6" handles={handles}>
+      <label style={{ display: 'block' }}>
+        <span style={{ color: '#6b7280', fontSize: 11 }}>Text</span>
+        <textarea
+          value={currText}
+          onChange={(e) => setCurrText(e.target.value)}
+          style={{
+            display: 'block', width: '100%', marginTop: 2,
+            padding: '3px 6px', border: '1px solid #d1d5db',
+            borderRadius: 4, fontSize: 12, boxSizing: 'border-box',
+            resize: 'none', minHeight: 60, fontFamily: 'inherit',
+          }}
+        />
+      </label>
+    </BaseNode>
   );
-}
+};
