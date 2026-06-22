@@ -14,20 +14,23 @@ export const MathNode = ({ id, data }) => {
   return (
     <BaseNode title="Math" color="#06b6d4" handles={handles}>
       <label style={{ display: 'block' }}>
-        <span style={{ color: '#6b7280', fontSize: 11 }}>Operation</span>
+        <span style={{ color: '#c9d1d9', fontSize: 11 }}>Operation</span>
         <select
           value={operation}
           onChange={(e) => setOperation(e.target.value)}
           style={{
             display: 'block', width: '100%', marginTop: 2,
-            padding: '3px 6px', border: '1px solid #d1d5db',
+            padding: '3px 6px', border: '1px solid#30363d',
             borderRadius: 4, fontSize: 12, boxSizing: 'border-box',
+            backgroundColor: '#0d1117',
+            color: '#c9d1d9',
           }}
         >
-          <option value="add">Add (A + B)</option>
-          <option value="subtract">Subtract (A - B)</option>
-          <option value="multiply">Multiply (A × B)</option>
-          <option value="divide">Divide (A ÷ B)</option>
+          <option value="add">Add </option>
+          <option value="subtract">Subtract </option>
+          <option value="multiply">Multiply </option>
+          <option value="divide">Divide </option>
+          <option value="Modulus">Mod</option>
         </select>
       </label>
       <p style={{ margin: '6px 0 0', color: '#9ca3af', fontSize: 10 }}>

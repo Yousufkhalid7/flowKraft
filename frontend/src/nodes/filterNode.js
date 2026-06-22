@@ -14,7 +14,7 @@ export const FilterNode = ({ id, data }) => {
   return (
     <BaseNode title="Filter" color="#dc2626" handles={handles}>
       <label style={{ display: 'block' }}>
-        <span style={{ color: '#6b7280', fontSize: 11 }}>Condition</span>
+        <span style={{ color: '#c9d1d9', fontSize: 11 }}>Condition</span>
         <input
           type="text"
           value={condition}
@@ -22,14 +22,16 @@ export const FilterNode = ({ id, data }) => {
           placeholder="e.g. value > 10"
           style={{
             display: 'block', width: '100%', marginTop: 2,
-            padding: '3px 6px', border: '1px solid #d1d5db',
+            padding: '3px 6px', border: '1px solid #30363d',
             borderRadius: 4, fontSize: 12, boxSizing: 'border-box',
+            backgroundColor: '#0d1117',
+            color: '#c9d1d9',
           }}
         />
       </label>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-        <span style={{ color: '#16a34a', fontSize: 10 }}>↑ pass</span>
-        <span style={{ color: '#dc2626', fontSize: 10 }}>↓ fail</span>
+        <span style={{ color: '#c9d1d9', fontSize: 10 }}>↑ pass</span>
+        <span style={{ color: '#c9d1d9', fontSize: 10 }}>↓ fail</span>
       </div>
     </BaseNode>
   );
