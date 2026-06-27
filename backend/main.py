@@ -5,7 +5,6 @@ from typing import List, Any
 
 app = FastAPI()
 
-# CORS lets the frontend (localhost:3000) talk to the backend (localhost:8000)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -18,15 +17,11 @@ class PipelineData(BaseModel):
     edges: List[Any]
 
 def is_dag(nodes, edges):
-    # Build adjacency list — for each node, store which nodes it points TO
     graph = {node['id']: [] for node in nodes}
     for edge in edges:
         if edge['source'] in graph:
             graph[edge['source']].append(edge['target'])
 
-    # DFS cycle detection
-    # visited = nodes we've fully processed
-    # in_stack = nodes in the current DFS path (if we see one again = cycle)
     visited = set()
     in_stack = set()
 
