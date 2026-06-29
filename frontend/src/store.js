@@ -30,11 +30,13 @@ export const useStore = create((set, get) => ({
         nodes: applyNodeChanges(changes, get().nodes),
       });
     },
+    
     onEdgesChange: (changes) => {
       set({
         edges: applyEdgeChanges(changes, get().edges),
       });
     },
+    setEdges: (eds) => set({ edges: eds }),
     onConnect: (connection) => {
       set({
         edges: addEdge({...connection, type: 'smoothstep', animated: true, markerEnd: {type: MarkerType.Arrow, height: '20px', width: '20px'}}, get().edges),
